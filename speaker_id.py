@@ -381,10 +381,10 @@ for epoch in range(begin_epochs, N_epochs):
                 err_tot_dev=err_sum/snt_te
 
             final = time.time()
-            print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt,final-begin))
+            print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f time=%f" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt,final-begin))
       
             with open(output_folder+"/res.res", "a") as res_file:
-                res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f\n" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt, final-begin))
+                res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f time=%f\n" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt, final-begin))
 
             checkpoint={'CNN_model_par': CNN_net.state_dict(),
                    'DNN1_model_par': DNN1_net.state_dict(),
