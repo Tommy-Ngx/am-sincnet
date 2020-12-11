@@ -277,7 +277,7 @@ for epoch in range(begin_epochs, N_epochs):
         loss_sum=0
         err_sum=0
 
-        for i in tdqm(range(N_batches)):
+        for i in tqdm(range(N_batches)):
 
             [inp,lab]=create_batches_rnd(batch_size,data_folder,wav_lst_tr,snt_tr,wlen,lab_dict,0.2)
             pout=DNN2_net(DNN1_net(CNN_net(inp)))
