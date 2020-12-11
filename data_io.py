@@ -71,6 +71,7 @@ def read_conf():
  #[optimization]
  options.lr=Config.get('optimization', 'lr')
  options.batch_size=Config.get('optimization', 'batch_size')
+ options.begin_epochs=Config.get('optimization', 'begin_epochs')
  options.N_epochs=Config.get('optimization', 'N_epochs')
  options.N_batches=Config.get('optimization', 'N_batches')
  options.N_eval_epoch=Config.get('optimization', 'N_eval_epoch')
