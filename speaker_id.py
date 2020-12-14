@@ -379,14 +379,19 @@ for epoch in range(begin_epochs, N_epochs):
                 err_tot_dev_snt=err_sum_snt/snt_te
                 loss_tot_dev=loss_sum/snt_te
                 err_tot_dev=err_sum/snt_te
-                model_parameters = filter(lambda p: p.requires_grad, DNN2_net.parameters())
-                params = sum([np.prod(p.size()) for p in model_parameters])
+                model1 = filter(lambda p: p.requires_grad, DNN2_net.parameters())
+                model2 = filter(lambda p: p.requires_grad, DNN1_net.parameters())
+                model3 = filter(lambda p: p.requires_grad, CNN_net.parameters())
+                p1 = sum([np.prod(p.size()) for p in model1])
+                p2 = sum([np.prod(p.size()) for p in model2])
+                p3 = sum([np.prod(p.size()) for p in model3])
+                params = p1 + p2 +p3
 
             final = time.time()
-            print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f time=%f params%f" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt,final-begin,params))
+            print("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f time=%f params=%f" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt,final-begin,params))
       
             with open(output_folder+"/res.res", "a") as res_file:
-                res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f time=%f params%f\n" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt, final-begin,params))
+                res_file.write("epoch %i, loss_tr=%f err_tr=%f loss_te=%f err_te=%f err_te_snt=%f time=%f params=%f\n" % (epoch, loss_tot,err_tot,loss_tot_dev,err_tot_dev,err_tot_dev_snt, final-begin,params))
 
             checkpoint={'CNN_model_par': CNN_net.state_dict(),
                    'DNN1_model_par': DNN1_net.state_dict(),
